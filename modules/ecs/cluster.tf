@@ -1,10 +1,10 @@
 resource "aws_ecs_cluster" "platform" {
-  name = "jorgechato-platform"
+  name = "${var.project}-cluster"
 }
 
 resource "aws_ecs_task_definition" "microservices" {
-  family                = "microservice"
-  container_definitions = "${file("${path.module}/task-definitions/microservice.json")}"
+  family                = "microservices"
+  container_definitions = "${file("${path.module}/task-definitions/microservices.json")}"
   network_mode          = "host"
 
   volume {
@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "microservices" {
 }
 
 resource "aws_ecs_service" "platform" {
-  name            = "platform"
+  name            = "${var.project}-service"
   cluster         = "${aws_ecs_cluster.platform.id}"
   task_definition = "${aws_ecs_task_definition.microservices.arn}"
   desired_count   = 1

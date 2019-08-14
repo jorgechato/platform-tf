@@ -1,3 +1,5 @@
+variable "project" {}
+
 # ENV variable
 variable "github_topic" {}
 variable "github_user" {}

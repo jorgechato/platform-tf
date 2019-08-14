@@ -5,6 +5,10 @@ variable "region" {
   default = "eu-west-1"
 }
 
+variable "project" {
+  default = "jorgechato-platform"
+}
+
 # ENV variable
 variable "github_topic" {}
 variable "github_user" {}
