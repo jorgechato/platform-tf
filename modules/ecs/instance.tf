@@ -1,27 +1,11 @@
-resource "aws_iam_role" "ecs-instance-role" {
-  name               = "${var.project}-instance-role"
-  path               = "/"
-  assume_role_policy = "${data.aws_iam_policy_document.ecs-instance-policy.json}"
-}
+resource "aws_launch_configuration" "launch" {
+  name                          = "${var.env}-${var.project}"
+  image_id                      = "${lookup(var.ami, var.region)}"
+  instance_type                 = "t2.micro"
+  # security_groups             = [""]
+  # user_data                   = ""
+  iam_instance_profile          = "${aws_iam_instance_profile.ecs-instance-profile.name}"
+  depends_on                    = ["aws_iam_role_policy_attachment.ecs-instance-role"]
 
-resource "aws_iam_role_policy_attachment" "ecs-instance-role-attachment" {
-  role       = "${aws_iam_role.ecs-instance-role.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
-
-resource "aws_iam_instance_profile" "ecs-instance-profile" {
-  name  = "${var.project}-instance-profile"
-  path  = "/"
-  role = "${aws_iam_role.ecs-instance-role.id}"
-}
-
-data "aws_iam_policy_document" "ecs-instance-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs.amazon.com"]
-    }
-  }
+  associate_public_ip_address = true
 }

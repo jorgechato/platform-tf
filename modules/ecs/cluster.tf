@@ -2,24 +2,38 @@ resource "aws_ecs_cluster" "platform" {
   name = "${var.project}-cluster"
 }
 
-resource "aws_ecs_task_definition" "microservices" {
-  family                = "microservices"
-  container_definitions = "${file("${path.module}/task-definitions/microservices.json")}"
-  network_mode          = "host"
+# resource "aws_ecs_task_definition" "api-task-definition" {
+  # family                = "api"
+  # container_definitions = "${file("${path.module}/task-definitions/api.json")}"
+  # network_mode          = "host"
+#
+  # volume {
+    # name      = "api-log"
+    # host_path = "/opt/api.jorgechato.com/log"
+  # }
+#
+  # tags           = {
+    # Applications = "api"
+  # }
+# }
 
-  volume {
-    name      = "api-log"
-    host_path = "/opt/api.jorgechato.com/log"
-  }
+resource "aws_ecs_task_definition" "blog-task-definition" {
+  family                = "blog"
+  container_definitions = "${data.template_file.blog-task-definition.rendered}"
 
-  tags           = {
-    Applications = "api nginx frontend vpn"
+  tags          = {
+    Name        = "ghost"
+    Application = "blog"
   }
 }
 
-resource "aws_ecs_service" "platform" {
-  name            = "${var.project}-service"
-  cluster         = "${aws_ecs_cluster.platform.id}"
-  task_definition = "${aws_ecs_task_definition.microservices.arn}"
-  desired_count   = 1
+data "template_file" "blog-task-definition" {
+  template = "${file("${path.module}/task-definitions/blog.json")}"
+
+  vars             =  {
+    image          = "ghost:2.28.0-alpine"
+    container_name = "jorgechato-com"
+    email          = "${var.blog_email}"
+    url            = "${var.blog_url}"
+  }
 }

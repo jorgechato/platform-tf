@@ -1,6 +1,10 @@
 variable "project" {}
+variable "env" {}
+variable "region" {}
+variable "ami" {}
 
 # ENV variable
+# # API
 variable "github_topic" {}
 variable "github_user" {}
 variable "github_token" {}
@@ -9,3 +13,6 @@ variable "mailchimp_ds" {}
 variable "mailchimp_key" {}
 variable "mailchimp_list" {}
 variable "location_user" {}
+# # BLOG
+variable "blog_email" {}
+variable "blog_url" {}

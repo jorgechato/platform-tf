@@ -1,21 +1,20 @@
-resource "aws_iam_role" "ecs-service-role" {
-  name               = "${var.project}-service-role"
-  path               = "/"
-  assume_role_policy = "${data.aws_iam_policy_document.ecs-service-policy.json}"
-}
+# Service without loadbalancer
+# resource "aws_ecs_service" "api-service" {
+  # count               = 1
+  # name                = "api"
+  # cluster             = "${aws_ecs_cluster.platform.id}"
+  # task_definition     = "${aws_ecs_task_definition.api-task-definition.arn}"
+  # scheduling_strategy = "REPLICA"
+  # desired_count       = 1
+  # depends_on          = ["aws_iam_role_policy.ecs-service-role", "aws_iam_role.ecs-service-role"]
+# }
 
-resource "aws_iam_role_policy_attachment" "ecs-service-role-attachment" {
-  role       = "${aws_iam_role.ecs-service-role.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-}
-
-data "aws_iam_policy_document" "ecs-service-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs.amazon.com"]
-    }
-  }
+resource "aws_ecs_service" "blog-service" {
+  count               = 1
+  name                = "blog"
+  cluster             = "${aws_ecs_cluster.platform.id}"
+  task_definition     = "${aws_ecs_task_definition.blog-task-definition.arn}"
+  scheduling_strategy = "REPLICA"
+  desired_count       = 1
+  depends_on          = ["aws_iam_role_policy_attachment.ecs-service-role"]
 }
