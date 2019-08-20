@@ -18,6 +18,13 @@ variable "ami" {
   }
 }
 
+variable "az" {
+  description      = "AWS AZ names"
+  default          = {
+    eu-west-1      = "eu-west-1a"
+  }
+}
+
 # ENV variable
 # # API
 variable "github_topic" {}

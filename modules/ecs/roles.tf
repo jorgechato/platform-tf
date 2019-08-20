@@ -2,50 +2,28 @@
 # Instance #
 ############
 
-resource "aws_iam_role" "ecs-instance-role" {
+resource "aws_iam_role" "instance" {
   name               = "${var.project}-instance-role"
-  path               = "/"
-  assume_role_policy = "${data.aws_iam_policy_document.ecs-instance-policy.json}"
+  assume_role_policy = "${file("${path.module}/roles/instance.json")}"
 }
 
-resource "aws_iam_role_policy_attachment" "ecs-instance-role" {
-  role       = "${aws_iam_role.ecs-instance-role.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
-
-data "aws_iam_policy_document" "ecs-instance-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs.amazonaws.com"]
-    }
-  }
+resource "aws_iam_role_policy" "instance" {
+  name = "${var.project}-instance-policy"
+  role   = "${aws_iam_role.instance.name}"
+  policy = "${file("${path.module}/roles/instance-policy.json")}"
 }
 
 ###########
 # Service #
 ###########
 
-resource "aws_iam_role" "ecs-service-role" {
+resource "aws_iam_role" "service" {
   name               = "${var.project}-service-role"
-  path               = "/"
-  assume_role_policy = "${data.aws_iam_policy_document.ecs-service-policy.json}"
+  assume_role_policy = "${file("${path.module}/roles/service.json")}"
 }
 
-resource "aws_iam_role_policy_attachment" "ecs-service-role" {
-  role       = "${aws_iam_role.ecs-service-role.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-}
-
-data "aws_iam_policy_document" "ecs-service-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs.amazonaws.com"]
-    }
-  }
+resource "aws_iam_role_policy" "service" {
+  name   = "${var.project}-service-policy"
+  role   = "${aws_iam_role.service.name}"
+  policy = "${file("${path.module}/roles/service-policy.json")}"
 }

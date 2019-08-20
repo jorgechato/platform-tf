@@ -1,14 +1,15 @@
 module "ecs" {
-  source         = "../../../modules/ecs"
+  source = "../../../modules/ecs"
 
-  env            = "${var.env}"
-  region         = "${var.region}"
-  ami            = "${var.ami}"
-  project        = "${var.project}"
+  env     = "${var.env}"
+  region  = "${var.region}"
+  ami     = "${var.ami}"
+  az      = "${var.az}"
+  project = "${var.project}"
 
   # BLOG
-  blog_email     = "${var.blog_email}"
-  blog_url       = "${var.blog_url}"
+  blog_email = "${var.blog_email}"
+  blog_url   = "${var.blog_url}"
 
   # API
   github_topic   = "${var.github_topic}"

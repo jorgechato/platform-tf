@@ -2,6 +2,10 @@ variable "project" {}
 variable "env" {}
 variable "region" {}
 variable "ami" {}
+variable "az" {}
+variable "instance_type" {
+  default = "t2.micro"
+}
 
 # ENV variable
 # # API
