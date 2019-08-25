@@ -1,51 +1,48 @@
 [
   {
-    "name": "api.jorgechato.com",
-    "image": "jorgechato/api.jorgechato.com",
-    "cpu": 256,
-    "memory": 512,
+    "name": "${container_name}",
+    "image": "${image}",
+    "memoryReservation": 128,
     "essential": true,
     "portMappings": [
       {
         "containerPort": 5000,
-        "hostPort": 443
+        "hostPort": 5000
       }
     ],
     "environment": [
       {
         "name": "GITHUB_TOPIC",
-        "value": "${var.github_topic}"
+        "value": "${github_topic}"
       },
       {
         "name": "GITHUB_USER",
-        "value": "${var.github_user}"
+        "value": "${github_user}"
       },
       {
         "name": "GITHUB_TOKEN",
-        "value": "${var.github_token}"
+        "value": "${github_token}"
       },
       {
         "name": "GIST_LIST",
-        "value": "${var.gist_list}"
+        "value": "${gist_list}"
       },
       {
         "name": "MAILCHIMP_DS",
-        "value": "${var.mailchimp_ds}"
+        "value": "${mailchimp_ds}"
       },
       {
         "name": "MAILCHIMP_KEY",
-        "value": "${var.mailchimp_key}"
+        "value": "${mailchimp_key}"
       },
       {
         "name": "MAILCHIMP_LIST",
-        "value": "${var.mailchimp_list}"
+        "value": "${mailchimp_list}"
       },
       {
         "name": "LOCATION_USER",
-        "value": "${var.location_user}"
+        "value": "${location_user}"
       }
-    ],
-    "mountPoints": [
     ]
   }
 ]

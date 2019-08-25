@@ -11,7 +11,6 @@ resource "aws_eip" "elastic-ip" {
 
 resource "aws_vpc" "main" {
   cidr_block           = "10.10.0.0/16"
-  enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags   = {
@@ -21,9 +20,8 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "main" {
   vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "${cidrsubnet(aws_vpc.main.cidr_block, 8, 1)}"
+  cidr_block              = "${cidrsubnet(aws_vpc.main.cidr_block, 8, 0)}"
   availability_zone       = "${lookup(var.az, var.region)}"
-  map_public_ip_on_launch = true
 
   depends_on = ["aws_internet_gateway.gw"]
 
@@ -41,7 +39,8 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_route_table" "r" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id     = "${aws_vpc.main.id}"
+  depends_on = ["aws_internet_gateway.gw", "aws_subnet.main"]
 
   route {
     cidr_block = "0.0.0.0/0"

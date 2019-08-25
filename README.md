@@ -32,7 +32,7 @@ $ terraform apply
 
 `eu-west-1` folder is a representation of the instance **zone** I am using.
 
-`pro` is the only environment I am hosting. I don't have millions to spend in
+`pro` is the only environment I am hosting. I don't have millions to spend on
 servers (just yet) so let's be crazy and develop in the production environment.
 
 ```zsh

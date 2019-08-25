@@ -6,8 +6,12 @@ variable "az" {}
 variable "instance_type" {
   default = "t2.micro"
 }
+variable "public_key" {}
 
-# ENV variable
+variable "email" {}
+variable "hosts" {}
+
+# SERVICE variable
 # # API
 variable "github_topic" {}
 variable "github_user" {}
@@ -17,6 +21,7 @@ variable "mailchimp_ds" {}
 variable "mailchimp_key" {}
 variable "mailchimp_list" {}
 variable "location_user" {}
+variable "api_hosts" {}
 # # BLOG
-variable "blog_email" {}
 variable "blog_url" {}
+variable "blog_hosts" {}

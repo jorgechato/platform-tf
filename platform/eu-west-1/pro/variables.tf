@@ -1,3 +1,7 @@
+locals {
+  hosts = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
+}
+
 variable "env" {
   default = "pro"
 }
@@ -25,7 +29,11 @@ variable "az" {
   }
 }
 
-# ENV variable
+variable "public_key" {}
+
+variable "email" {}
+
+# SERVICE variable
 # # API
 variable "github_topic" {}
 variable "github_user" {}
@@ -35,6 +43,11 @@ variable "mailchimp_ds" {}
 variable "mailchimp_key" {}
 variable "mailchimp_list" {}
 variable "location_user" {}
+variable "api_hosts" {
+  type = "list"
+}
 # # BLOG
-variable "blog_email" {}
 variable "blog_url" {}
+variable "blog_hosts" {
+  type = "list"
+}
