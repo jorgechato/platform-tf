@@ -8,11 +8,10 @@ variable "env" {
 variable "region" {
   default = "eu-west-1"
 }
-
+variable "bucket" {}
 variable "project" {
   default = "jorgechato-platform"
 }
-
 variable "ami" {
   description      = "AWS ECS AMI id"
   default          = {
@@ -21,14 +20,12 @@ variable "ami" {
     eu-west-3      = "ami-0d260f3e5ccd06043"
   }
 }
-
 variable "az" {
   description      = "AWS AZ names"
   default          = {
     eu-west-1      = "eu-west-1a"
   }
 }
-
 variable "public_key" {}
 
 variable "email" {}

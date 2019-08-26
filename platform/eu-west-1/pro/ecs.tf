@@ -7,6 +7,7 @@ module "ecs" {
   az         = "${var.az}"
   project    = "${var.project}"
   public_key = "${var.public_key}"
+  bucket     = "${var.bucket}"
 
   email = "${var.email}"
   hosts = "${local.hosts}"

@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
 
   volume {
     name      = "nginx"
-    host_path = "/etc/nginx/service.conf"
+    host_path = "/etc/nginx/services/service.conf"
   }
 
   volume {
@@ -59,8 +59,6 @@ data "template_file" "nginx-task-definition" {
   vars                         = {
     nginx_image                = "umputun/nginx-le"
     nginx_container_name       = "nginx"
-    # letsencrypt_image          = "jrcs/letsencrypt-nginx-proxy-companion"
-    # letsencrypt_container_name = "letsencrypt"
     email                      = "${var.email}"
     hosts                      = "${join(",", "${var.blog_hosts}")}"
   }
@@ -83,10 +81,6 @@ data "template_file" "api-task-definition" {
   }
 }
 
-data "aws_ecr_repository" "api" {
-  name = "api-jorgechato-com"
-}
-
 data "template_file" "blog-task-definition" {
   template = "${file("${path.module}/task-definitions/blog.json")}"
 
@@ -96,4 +90,8 @@ data "template_file" "blog-task-definition" {
     email          = "${var.email}"
     url            = "${var.blog_url}"
   }
+}
+
+data "aws_ecr_repository" "api" {
+  name = "api-jorgechato-com"
 }

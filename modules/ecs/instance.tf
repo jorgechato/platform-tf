@@ -12,15 +12,7 @@ resource "aws_instance" "platform" {
   ]
   depends_on             = ["aws_iam_role_policy.service"]
 
-  user_data = <<EOF
-  #!/bin/bash
-  cat <<EOS >> /etc/ecs/ecs.config
-  ECS_CLUSTER=${aws_ecs_cluster.platform.name}
-  ECS_ENABLE_CONTAINER_METADATA=true
-  EOS
-
-  cat ${data.template_file.nginx-service-conf.rendered} > /etc/nginx/service.conf
-  EOF
+  user_data = "${data.template_file.user-data.rendered}"
 
   tags      = {
     Name    = "${var.env}-${var.project}"
@@ -29,18 +21,15 @@ resource "aws_instance" "platform" {
   }
 
   volume_tags = {
-    Name      = "${var.env}-${var.project}-vol"
+    Name      = "${var.env}-${var.project}-main-vol"
     Instance  = "${var.env}-${var.project}"
   }
 }
 
-data "template_file" "nginx-service-conf" {
-  template = "${file("${path.module}/user-data/nginx/service.conf")}"
+data "template_file" "user-data" {
+  template = "${file("${path.module}/user-data/main.sh")}"
 
-  vars                  = {
-    blog_name           = "blog"
-    blog_listening      = "localhost"
-    blog_container_port = "2368"
-    blog_hosts          = "${join(" ", "${var.blog_hosts}")}"
+  vars      = {
+    cluster = "${aws_ecs_cluster.platform.name}"
   }
 }

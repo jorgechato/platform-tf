@@ -22,7 +22,7 @@
       },
       {
         "name": "LETSENCRYPT",
-        "value": "true"
+        "value": "flase"
       },
       {
         "name": "LE_EMAIL",
