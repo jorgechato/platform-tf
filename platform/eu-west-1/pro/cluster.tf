@@ -1,13 +1,7 @@
-module "ecs" {
-  source = "../../../modules/ecs"
+module "cluster" {
+  source = "../../../modules/cluster"
 
-  env        = "${var.env}"
-  region     = "${var.region}"
-  ami        = "${var.ami}"
-  az         = "${var.az}"
-  project    = "${var.project}"
-  public_key = "${var.public_key}"
-  bucket     = "${var.bucket}"
+  project = "${var.project}"
 
   email = "${var.email}"
   hosts = "${local.hosts}"

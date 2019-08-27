@@ -4,7 +4,7 @@ resource "aws_instance" "platform" {
   availability_zone      = "${lookup(var.az, var.region)}"
   instance_type          = "${var.instance_type}"
   vpc_security_group_ids = ["${aws_security_group.instance-base.id}"]
-  subnet_id              = "${aws_subnet.main.id}"
+  subnet_id              = "${var.subnet_main_id}"
   iam_instance_profile   = "${aws_iam_instance_profile.ecs-instance-profile.name}"
   security_groups        = [
     "${aws_security_group.instance-base.id}",
@@ -26,10 +26,7 @@ resource "aws_instance" "platform" {
   }
 }
 
-data "template_file" "user-data" {
-  template = "${file("${path.module}/user-data/main.sh")}"
-
-  vars      = {
-    cluster = "${aws_ecs_cluster.platform.name}"
-  }
+resource "aws_key_pair" "dev" {
+  key_name   = "${var.project}-key"
+  public_key = "${file(pathexpand("~/.ssh/${var.public_key}.pub"))}"
 }

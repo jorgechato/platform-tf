@@ -1,5 +1,6 @@
 locals {
-  hosts = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
+  hosts  = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
+  bucket = "config-${var.project}"
 }
 
 variable "env" {
@@ -8,7 +9,6 @@ variable "env" {
 variable "region" {
   default = "eu-west-1"
 }
-variable "bucket" {}
 variable "project" {
   default = "jorgechato-platform"
 }
@@ -27,6 +27,8 @@ variable "az" {
   }
 }
 variable "public_key" {}
+variable "aws_access_key_id" {}
+variable "aws_secret_access_key" {}
 
 variable "email" {}
 

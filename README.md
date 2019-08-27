@@ -7,8 +7,10 @@ This repository host a `terraform` project to deploy the
 ```zsh
 .
 ├── modules
-│   └── ecs
-│       └── task-definitions
+│   ├── cluster # ecs
+│   ├── instance # instance + iam + sg
+│   ├── network # eip + vpc + subnets
+│   └── storage # s3 + ebs
 └── platform
     └── eu-west-1
         └── pro
@@ -38,5 +40,6 @@ servers (just yet) so let's be crazy and develop in the production environment.
 ```zsh
 $ cd platform/eu-west-1/pro
 
+$ terraform init
 $ terraform apply
 ```

@@ -1,13 +1,4 @@
 variable "project" {}
-variable "env" {}
-variable "region" {}
-variable "ami" {}
-variable "az" {}
-variable "instance_type" {
-  default = "t2.micro"
-}
-variable "public_key" {}
-variable "bucket" {}
 
 variable "email" {}
 variable "hosts" {}

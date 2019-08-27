@@ -16,7 +16,6 @@ resource "aws_ebs_volume" "main" {
 resource "aws_volume_attachment" "main" {
   device_name  = "/dev/sdh"
   volume_id    = "${aws_ebs_volume.main.id}"
-  instance_id  = "${aws_instance.platform.id}"
+  instance_id  = "${var.instance_id}"
   skip_destroy = true
-  depends_on   = ["aws_instance.platform"]
 }

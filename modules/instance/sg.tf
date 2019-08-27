@@ -1,7 +1,7 @@
 resource "aws_security_group" "instance-base" {
   name        = "${var.project}-base"
   description = "Allow all inbound/outbound traffic on http + https"
-  vpc_id      = "${aws_vpc.main.id}"
+  vpc_id      = "${var.vpc_main_id}"
 
   ingress {
     protocol    = "tcp"
@@ -28,7 +28,7 @@ resource "aws_security_group" "instance-base" {
 resource "aws_security_group" "instance-ssh" {
   name        = "${var.project}-ssh"
   description = "Allow ssh traffic on 22"
-  vpc_id      = "${aws_vpc.main.id}"
+  vpc_id      = "${var.vpc_main_id}"
 
   ingress {
     protocol    = "tcp"
