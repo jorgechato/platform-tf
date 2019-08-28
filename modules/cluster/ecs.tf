@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
 
   volume {
     name      = "nginx"
-    host_path = "/etc/nginx/services/service.conf"
+    host_path = "/etc/config/nginx/service.conf"
   }
 
   volume {

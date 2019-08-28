@@ -2,6 +2,7 @@ variable "env" {}
 variable "project" {}
 variable "az" {}
 variable "ami" {}
+variable "bucket" {}
 variable "region" {}
 variable "instance_type" {
   default = "t2.micro"

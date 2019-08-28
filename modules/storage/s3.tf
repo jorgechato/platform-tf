@@ -25,9 +25,7 @@ resource "aws_s3_bucket_public_access_block" "s3-terraform-state-storage" {
 }
 
 resource "aws_s3_bucket_object" "nginx-service-conf" {
-  count = 2
-
-  key     = "nginx/service${count.index}.conf"
-  bucket  = "${aws_s3_bucket.s3-config.id}"
-  content = "${element(data.template_file.nginx-service-conf.*.rendered, "${count.index}")}"
+  key      = "nginx/service.conf"
+  bucket   = "${aws_s3_bucket.s3-config.id}"
+  content  = "${templatefile("${path.module}/data/nginx/service.conf", { services="${local.services}" })}"
 }

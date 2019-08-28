@@ -1,7 +1,7 @@
 [
   {
-    "name": "${nginx_container_name}",
-    "image": "${nginx_image}",
+    "name": "${container_name}",
+    "image": "${image}",
     "memory": 128,
     "memoryReservation": 64,
     "essential": true,

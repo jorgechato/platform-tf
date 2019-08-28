@@ -1,11 +1,12 @@
 module "instance" {
   source = "../../../modules/instance"
 
-  env        = "${var.env}"
-  project    = "${var.project}"
-  az         = "${var.az}"
-  ami        = "${var.ami}"
-  region     = "${var.region}"
+  env     = "${var.env}"
+  project = "${var.project}"
+  az      = "${var.az}"
+  ami     = "${var.ami}"
+  region  = "${var.region}"
+  bucket  = "${local.bucket}"
 
   public_key            = "${var.public_key}"
   aws_secret_access_key = "${var.aws_secret_access_key}"

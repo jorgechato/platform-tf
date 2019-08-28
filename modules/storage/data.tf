@@ -1,12 +1,7 @@
-data "template_file" "nginx-service-conf" {
-  count = 2
+data "template_file" "s3-role-policy" {
+  template = "${file("${path.module}/policy/s3.json")}"
 
-  template = "${file("${path.module}/data/nginx/service.conf")}"
-
-  vars             = {
-    name           = "${lookup("${local.nginx_names}", "${count.index}")}"
-    host           = "localhost"
-    container_port = "${lookup("${local.nginx_ports}", "${count.index}")}"
-    hosts          = "${lookup("${local.nginx_hosts}", "${count.index}")}"
+  vars     = {
+    bucket = "${var.bucket}"
   }
 }

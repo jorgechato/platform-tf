@@ -6,6 +6,7 @@ data "template_file" "user-data" {
     region                = "${var.region}"
     aws_access_key_id     = "${var.aws_access_key_id}"
     aws_secret_access_key = "${var.aws_secret_access_key}"
+    bucket                = "${var.bucket}"
 
     mount       = "${var.mount}"
     volume_path = "${var.volume_path}"

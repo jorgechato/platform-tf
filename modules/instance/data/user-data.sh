@@ -11,12 +11,10 @@ ECS_CLUSTER=${cluster}
 ECS_ENABLE_CONTAINER_METADATA=true
 EOS
 
-pip3 install awscli --upgrade --user
-aws configure set default.region ${region}
-aws configure set default.format json
+$(sudo yum -y install awscli)
 
-cat > $HOME/.aws/credentials <<EOS
-[default]
-aws_access_key_id = ${aws_access_key_id}
-aws_secret_access_key = ${aws_secret_access_key}
-EOS
+mkdir -p /etc/config/nginx
+AWS_DEFAULT_REGION=${region}\
+    AWS_ACCESS_KEY_ID=${aws_access_key_id} \
+    AWS_SECRET_ACCESS_KEY=${aws_secret_access_key} \
+    aws s3 sync s3://${bucket}/nginx /etc/config/nginx
