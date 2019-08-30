@@ -20,9 +20,6 @@ variable "project" {}
 variable "region" {}
 variable "az" {}
 variable "bucket" {}
-variable "aws_user_name" {}
 
 variable "blog_hosts" {}
 variable "api_hosts" {}
-
-variable "instance_id" {}

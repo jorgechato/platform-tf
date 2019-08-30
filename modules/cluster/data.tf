@@ -2,10 +2,10 @@ data "template_file" "nginx-task-definition" {
   template = "${file("${path.module}/task-definitions/nginx.json")}"
 
   vars             = {
-    image          = "nginx/alpine"
+    image          = "umputun/nginx-le"
     container_name = "nginx"
     email          = "${var.email}"
-    hosts          = "${join(",", "${var.blog_hosts}")}"
+    hosts          = "${join(",", "${var.hosts}")}"
   }
 }
 
@@ -38,5 +38,5 @@ data "template_file" "blog-task-definition" {
 }
 
 data "aws_ecr_repository" "api" {
-  name = "api-jorgechato-com"
+  name = "${var.repo_name_api}"
 }

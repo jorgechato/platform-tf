@@ -7,7 +7,7 @@ module "cluster" {
   hosts = "${local.hosts}"
 
   # BLOG
-  blog_url   = "${var.blog_url}"
+  blog_url   = "${local.blog_url}"
   blog_hosts = "${var.blog_hosts}"
 
   # API

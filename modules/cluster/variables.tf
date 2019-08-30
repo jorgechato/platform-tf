@@ -2,6 +2,9 @@ variable "project" {}
 
 variable "email" {}
 variable "hosts" {}
+variable "repo_name_api" {
+  default = "api-jorgechato-com"
+}
 
 # SERVICE variable
 # # API

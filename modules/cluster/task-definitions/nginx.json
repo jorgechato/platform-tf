@@ -22,7 +22,7 @@
       },
       {
         "name": "LETSENCRYPT",
-        "value": "flase"
+        "value": "true"
       },
       {
         "name": "LE_EMAIL",
@@ -35,12 +35,24 @@
     ],
     "mountPoints": [
       {
-        "SourceVolume": "nginx",
+        "SourceVolume": "nginx-conf",
+        "ContainerPath": "/etc/nginx/nginx.conf"
+      },
+      {
+        "SourceVolume": "nginx-service",
         "ContainerPath": "/etc/nginx/service.conf"
       },
       {
+        "SourceVolume": "letsencrypt",
+        "ContainerPath": "/etc/letsencrypt"
+      },
+      {
         "SourceVolume": "certs",
-        "ContainerPath": "/etc/nginx/certs"
+        "ContainerPath": "/etc/nginx/ssl"
+      },
+      {
+        "SourceVolume": "logs",
+        "ContainerPath": "/var/log/nginx/"
       }
     ]
   }

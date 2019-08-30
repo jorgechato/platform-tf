@@ -9,8 +9,6 @@ variable "instance_type" {
 }
 
 variable "public_key" {}
-variable "aws_secret_access_key" {}
-variable "aws_access_key_id" {}
 
 variable "vpc_main_id" {}
 variable "subnet_main_id" {}
@@ -20,3 +18,4 @@ variable "mount" {
   type = bool
 }
 variable "volume_path" {}
+variable "volume_id" {}

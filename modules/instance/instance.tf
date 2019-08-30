@@ -10,7 +10,7 @@ resource "aws_instance" "platform" {
     "${aws_security_group.instance-base.id}",
     "${aws_security_group.instance-ssh.id}"
   ]
-  depends_on             = ["aws_iam_role_policy.service"]
+  depends_on             = ["aws_iam_role_policy.instance"]
 
   user_data = "${data.template_file.user-data.rendered}"
 
@@ -29,4 +29,15 @@ resource "aws_instance" "platform" {
 resource "aws_key_pair" "dev" {
   key_name   = "${var.project}-key"
   public_key = "${file(pathexpand("~/.ssh/${var.public_key}.pub"))}"
+}
+
+resource "aws_volume_attachment" "persistent" {
+  device_name  = "/dev/sdh"
+  volume_id    = "${var.volume_id}"
+  instance_id  = "${aws_instance.platform.id}"
+
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "aws ec2 stop-instances --instance-ids ${data.aws_instance.platform.id}"
+  }
 }

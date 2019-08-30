@@ -8,13 +8,28 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
   network_mode          = "host"
 
   volume {
-    name      = "nginx"
+    name      = "nginx-conf"
+    host_path = "/etc/config/nginx/nginx.conf"
+  }
+
+  volume {
+    name      = "nginx-service"
     host_path = "/etc/config/nginx/service.conf"
   }
 
   volume {
+    name      = "letsencrypt"
+    host_path = "/data/nginx/letsencrypt"
+  }
+
+  volume {
     name      = "certs"
-    host_path = "/etc/nginx/certs"
+    host_path = "/data/nginx/certs"
+  }
+
+  volume {
+    name      = "logs"
+    host_path = "/tmp/log/nginx/"
   }
 
   tags          = {

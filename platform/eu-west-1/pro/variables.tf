@@ -1,6 +1,7 @@
 locals {
-  hosts  = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
-  bucket = "config-${var.project}"
+  hosts    = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
+  bucket   = "config-${var.project}"
+  blog_url = "https://${var.blog_hosts[0]}"
 }
 
 variable "env" {
@@ -27,9 +28,6 @@ variable "az" {
   }
 }
 variable "public_key" {}
-variable "aws_access_key_id" {}
-variable "aws_secret_access_key" {}
-variable "aws_user_name" {}
 
 variable "email" {}
 
@@ -47,7 +45,6 @@ variable "api_hosts" {
   type = "list"
 }
 # # BLOG
-variable "blog_url" {}
 variable "blog_hosts" {
   type = "list"
 }
