@@ -6,9 +6,13 @@ module "cluster" {
   email = "${var.email}"
   hosts = "${local.hosts}"
 
+  volume_path = "${var.volume_path}"
+
   # BLOG
-  blog_url   = "${local.blog_url}"
-  blog_hosts = "${var.blog_hosts}"
+  blog_url          = "${local.blog_url}"
+  blog_hosts        = "${var.blog_hosts}"
+  blog_theme_name   = "${var.blog_theme_name}"
+  blog_theme_folder = "${var.blog_theme_folder}"
 
   # API
   github_topic   = "${var.github_topic}"

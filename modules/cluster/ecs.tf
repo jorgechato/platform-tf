@@ -19,17 +19,27 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
 
   volume {
     name      = "letsencrypt"
-    host_path = "/data/nginx/letsencrypt"
+    host_path = "${var.volume_path}/nginx/letsencrypt"
   }
 
   volume {
     name      = "certs"
-    host_path = "/data/nginx/certs"
+    host_path = "${var.volume_path}/nginx/certs"
   }
 
   volume {
     name      = "logs"
     host_path = "/tmp/log/nginx/"
+  }
+
+  volume {
+    name      = "images"
+    host_path = "${var.volume_path}/ghost/images"
+  }
+
+  volume {
+    name      = "assets"
+    host_path = "${var.volume_path}/ghost/themes/${var.blog_theme_folder}/assets"
   }
 
   tags          = {
@@ -56,7 +66,7 @@ resource "aws_ecs_task_definition" "blog-task-definition" {
 
   volume {
     name      = "content"
-    host_path = "/data/ghost"
+    host_path = "${var.volume_path}/ghost"
   }
 
   tags          = {

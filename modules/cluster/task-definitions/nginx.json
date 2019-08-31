@@ -35,6 +35,15 @@
     ],
     "mountPoints": [
       {
+        "SourceVolume": "images",
+        "ContainerPath": "/var/www/blog/images"
+      },
+      {
+        "SourceVolume": "assets",
+        "ContainerPath": "/var/www/blog/assets",
+        "ReadOnly": true
+      },
+      {
         "SourceVolume": "nginx-conf",
         "ContainerPath": "/etc/nginx/nginx.conf"
       },

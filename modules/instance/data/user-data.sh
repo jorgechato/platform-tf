@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$(sudo yum -y install awscli wget)
+$(sudo yum -y install awscli wget unzip)
 
 %{ if mount ~}
 #############
@@ -30,8 +30,14 @@ mkdir ${volume_path}
 mount /dev/sdh ${volume_path}
 echo /dev/sdh ${volume_path} ext4 defaults,nofail 0 0 >> /etc/fstab
 
-$(sudo rm -rf /data/nginx/certs/dhparams.pem)
+$(sudo rm -rf ${volume_path}/nginx/certs/dhparams.pem)
 %{ endif ~}
+
+THEME_FOLDER=${volume_path}/ghost/themes
+if [[ ! -d "$THEME_FOLDER" || ! -f "$THEME_FOLDER/$blog_theme_folder/amp.hbs" ]]; then
+    wget -q -O /tmp/${blog_theme_name}.zip ${blog_theme_url}
+    sudo unzip /tmp/${blog_theme_name} -d $THEME_FOLDER
+fi
 
 cat > /etc/ecs/ecs.config <<EOS
 ECS_CLUSTER=${cluster}

@@ -28,6 +28,9 @@ variable "az" {
   }
 }
 variable "public_key" {}
+variable "volume_path" {
+  default = "/data"
+}
 
 variable "email" {}
 
@@ -48,3 +51,6 @@ variable "api_hosts" {
 variable "blog_hosts" {
   type = "list"
 }
+variable "blog_theme_name" {}
+variable "blog_theme_url" {}
+variable "blog_theme_folder" {}

@@ -19,3 +19,7 @@ variable "mount" {
 }
 variable "volume_path" {}
 variable "volume_id" {}
+
+variable "blog_theme_name" {}
+variable "blog_theme_url" {}
+variable "blog_theme_folder" {}

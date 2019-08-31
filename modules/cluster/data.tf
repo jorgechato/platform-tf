@@ -30,7 +30,8 @@ data "template_file" "blog-task-definition" {
   template = "${file("${path.module}/task-definitions/blog.json")}"
 
   vars             = {
-    image          = "ghost:2.28.0-alpine"
+    image          = "ghost:${var.blog_image_version}-alpine"
+    version        = "${var.blog_image_version}"
     container_name = "jorgechato-com"
     email          = "${var.email}"
     url            = "${var.blog_url}"

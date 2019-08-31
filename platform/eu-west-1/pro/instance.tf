@@ -15,6 +15,9 @@ module "instance" {
   ecs_platform_name = "${module.cluster.name}"
   volume_id         = "${module.storage.volume_id}"
 
-  mount       = true
-  volume_path = "/data"
+  mount             = true
+  volume_path       = "${var.volume_path}"
+  blog_theme_url    = "${var.blog_theme_url }"
+  blog_theme_name   = "${var.blog_theme_name}"
+  blog_theme_folder = "${var.blog_theme_folder}"
 }

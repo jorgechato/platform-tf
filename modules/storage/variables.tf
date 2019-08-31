@@ -1,10 +1,10 @@
 locals {
   services = [
     {
-      name  = "blog"
-      port  = "2368"
-      host  = "localhost"
-      hosts = "${join(" ", "${var.blog_hosts}")}"
+      name   = "blog"
+      port   = "2368"
+      host   = "localhost"
+      hosts  = "${join(" ", "${var.blog_hosts}")}"
     },
     {
       name  = "api"
@@ -22,4 +22,6 @@ variable "az" {}
 variable "bucket" {}
 
 variable "blog_hosts" {}
+variable "blog_theme_name" {}
+variable "blog_theme_folder" {}
 variable "api_hosts" {}

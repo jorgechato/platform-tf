@@ -8,6 +8,10 @@ data "template_file" "user-data" {
 
     mount       = "${var.mount}"
     volume_path = "${var.volume_path}"
+
+    blog_theme_name   = "${var.blog_theme_name}"
+    blog_theme_url    = "${var.blog_theme_url}"
+    blog_theme_folder = "${var.blog_theme_folder}"
   }
 }
 
