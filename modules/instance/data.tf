@@ -29,3 +29,7 @@ data "aws_instance" "platform" {
     values = ["${var.env}-${var.project}"]
   }
 }
+
+data "http" "myip" {
+  url = "https://www.myexternalip.com/raw"
+}
