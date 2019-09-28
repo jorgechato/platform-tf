@@ -1,16 +1,36 @@
 locals {
   services = [
     {
-      name   = "blog"
-      port   = "2368"
-      host   = "localhost"
-      hosts  = "${join(" ", "${var.blog_hosts}")}"
+      name      = "blog"
+      hosts     = "${join(" ", "${var.blog_hosts}")}"
+      listen    = {
+        port     = "443",
+        protocol = "ssl"
+      },
+      locations = [
+        {
+          name = "blog"
+          host = "localhost"
+          path = ""
+          port = "2368"
+        }
+      ]
     },
     {
-      name  = "api"
-      port  = "5000"
-      host  = "localhost"
-      hosts = "${join(" ", "${var.api_hosts}")}"
+      name      = "api"
+      hosts     = "${join(" ", "${var.api_hosts}")}"
+      listen    = {
+        port     = "443",
+        protocol = "ssl"
+      },
+      locations = [
+        {
+          name = "api"
+          host = "localhost"
+          path = ""
+          port = "5000"
+        }
+      ]
     }
   ]
 }
