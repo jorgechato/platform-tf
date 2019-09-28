@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$(sudo yum -y install awscli wget unzip)
+$(sudo yum -y install awscli wget unzip vim)
 
 %{ if mount ~}
 #############
