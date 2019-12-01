@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3-terraform-state-storage" {
-  bucket = "${var.bucket}"
+  bucket = var.bucket
   acl    = "private"
 
   versioning {
@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "s3-terraform-state-storage" {
 }
 
 resource "aws_s3_bucket_public_access_block" "s3-terraform-state-storage" {
-  bucket = "${aws_s3_bucket.s3-terraform-state-storage.id}"
+  bucket = aws_s3_bucket.s3-terraform-state-storage.id
 
   block_public_acls       = true
   block_public_policy     = true

@@ -1,5 +1,5 @@
 resource "aws_ebs_volume" "main" {
-  availability_zone = "${lookup(var.az, var.region)}"
+  availability_zone = lookup(var.az, var.region)
   size              = 20
   type              = "standard"
 

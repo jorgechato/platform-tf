@@ -2,7 +2,7 @@ locals {
   services = [
     {
       name      = "blog"
-      hosts     = "${join(" ", "${var.blog_hosts}")}"
+      hosts     = join(" ", "${var.blog_hosts}")
       listen    = {
         port     = "443",
         protocol = "ssl"
@@ -18,7 +18,7 @@ locals {
     },
     {
       name      = "api"
-      hosts     = "${join(" ", "${var.api_hosts}")}"
+      hosts     = join(" ", "${var.api_hosts}")
       listen    = {
         port     = "443",
         protocol = "ssl"

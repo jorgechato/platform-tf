@@ -8,9 +8,9 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "${cidrsubnet(aws_vpc.main.cidr_block, 8, 0)}"
-  availability_zone       = "${lookup(var.az, var.region)}"
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, 8, 0)
+  availability_zone       = lookup(var.az, var.region)
 
   depends_on = ["aws_internet_gateway.gw"]
 

@@ -1,5 +1,5 @@
 locals {
-  hosts    = "${concat("${var.blog_hosts}", "${var.api_hosts}")}"
+  hosts    = concat("${var.blog_hosts}", "${var.api_hosts}")
   bucket   = "config-${var.project}"
   blog_url = "https://${var.blog_hosts[0]}"
 }
@@ -45,11 +45,11 @@ variable "mailchimp_key" {}
 variable "mailchimp_list" {}
 variable "location_user" {}
 variable "api_hosts" {
-  type = "list"
+  type = list
 }
 # # BLOG
 variable "blog_hosts" {
-  type = "list"
+  type = list
 }
 variable "blog_theme_name" {}
 variable "blog_theme_url" {}
