@@ -1,6 +1,6 @@
 resource "aws_instance" "platform" {
   key_name               = aws_key_pair.dev.key_name
-  ami                    = lookup(var.ami, var.region)
+  ami                    = data.aws_ami.ecs-optimized.id
   availability_zone      = lookup(var.az, var.region)
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.instance-base.id]

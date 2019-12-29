@@ -26,3 +26,18 @@ data "template_file" "intance-policy" {
 data "http" "myip" {
   url = "https://www.myexternalip.com/raw"
 }
+
+data "aws_ami" "ecs-optimized" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-ecs-*-x86_64-ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
