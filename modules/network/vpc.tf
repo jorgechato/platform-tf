@@ -12,7 +12,7 @@ resource "aws_subnet" "main" {
   cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, 8, 0)
   availability_zone       = lookup(var.az, var.region)
 
-  depends_on = ["aws_internet_gateway.gw"]
+  depends_on = [aws_internet_gateway.gw]
 
   tags   = {
     Name = "${var.project}-sn"

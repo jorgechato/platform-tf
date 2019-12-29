@@ -1,5 +1,5 @@
 locals {
-  hosts    = concat("${var.blog_hosts}", "${var.api_hosts}")
+  hosts    = concat(var.blog_hosts, var.api_hosts)
   bucket   = "config-${var.project}"
   blog_url = "https://${var.blog_hosts[0]}"
 }

@@ -37,7 +37,7 @@ resource "aws_volume_attachment" "persistent" {
   instance_id  = aws_instance.platform.id
 
   provisioner "local-exec" {
-    when    = "destroy"
-    command = "aws ec2 stop-instances --instance-ids ${data.aws_instance.platform.id}"
+    when    = destroy
+    command = "aws ec2 stop-instances --instance-ids ${self.instance_id}"
   }
 }

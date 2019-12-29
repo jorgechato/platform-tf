@@ -1,3 +1,3 @@
 output "name" {
-  value = "${aws_ecs_cluster.platform.name}"
+  value = aws_ecs_cluster.platform.name
 }
