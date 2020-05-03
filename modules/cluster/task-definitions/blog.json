@@ -2,7 +2,8 @@
   {
     "name": "${container_name}",
     "image": "${image}",
-    "memoryReservation": 128,
+    "memory": 128,
+    "memoryReservation": 64,
     "essential": true,
     "portMappings": [
       {
