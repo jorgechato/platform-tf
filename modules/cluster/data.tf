@@ -31,10 +31,21 @@ data "template_file" "blog-task-definition" {
 
   vars             = {
     image          = "ghost:${var.blog_image_version}-alpine"
-    version        = var.blog_image_version
     container_name = "jorgechato-com"
     email          = var.email
     url            = var.blog_url
+  }
+}
+
+data "template_file" "grafana-task-definition" {
+  template = file("${path.module}/task-definitions/grafana.json")
+
+  vars              = {
+    image           = "grafana/grafana:${var.grafana_image_version}"
+    container_name  = "grafana"
+    grafana_plugins = join(",", var.grafana_plugins)
+    grafana_user    = var.grafana_user
+    grafana_pwd     = var.grafana_pwd
   }
 }
 

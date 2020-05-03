@@ -24,3 +24,12 @@ resource "aws_ecs_service" "blog-service" {
   scheduling_strategy = "REPLICA"
   desired_count       = 1
 }
+
+resource "aws_ecs_service" "grafana-service" {
+  count               = 1
+  name                = "grafana"
+  cluster             = aws_ecs_cluster.platform.id
+  task_definition     = aws_ecs_task_definition.grafana-task-definition.arn
+  scheduling_strategy = "REPLICA"
+  desired_count       = 1
+}

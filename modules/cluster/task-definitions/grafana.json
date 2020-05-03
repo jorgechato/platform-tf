@@ -1,0 +1,45 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "${image}",
+    "memory": 128,
+    "memoryReservation": 64,
+    "essential": true,
+    "user": "1000",
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "hostPort": 3000
+      }
+    ],
+    "environment": [
+      {
+        "name": "GF_SECURITY_ADMIN_USER",
+        "value": "${grafana_user}"
+      },
+      {
+        "name": "GF_SECURITY_ADMIN_PASSWORD",
+        "value": "${grafana_pwd}"
+      },
+      {
+        "name": "GF_USERS_ALLOW_SIGN_UP",
+        "value": "false"
+      },
+      {
+        "name": "GF_INSTALL_PLUGINS",
+        "value": "${grafana_plugins}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "SourceVolume": "data",
+        "ContainerPath": "/var/lib/grafana"
+      },
+      {
+        "SourceVolume": "logs",
+        "ContainerPath": "/var/log/grafana"
+      }
+    ]
+  }
+]
+

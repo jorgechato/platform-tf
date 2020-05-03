@@ -21,9 +21,21 @@ variable "location_user" {}
 variable "api_hosts" {}
 # # BLOG
 variable "blog_image_version" {
-  default = "2.28.0"
+  default = "3.14.0"
 }
 variable "blog_url" {}
 variable "blog_hosts" {}
 variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
+# # Grafana
+variable "grafana_image_version" {
+  default = "6.7.2"
+}
+variable "grafana_plugins" {
+  type    = list
+  default = [
+    "grafana-piechart-panel"
+  ]
+}
+variable "grafana_user" {}
+variable "grafana_pwd" {}

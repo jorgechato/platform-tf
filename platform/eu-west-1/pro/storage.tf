@@ -7,6 +7,7 @@ module "storage" {
   project = var.project
   bucket  = local.bucket
 
+  grafana_hosts     = var.grafana_hosts
   api_hosts         = var.api_hosts
   blog_hosts        = var.blog_hosts
   blog_theme_folder = var.blog_theme_folder
