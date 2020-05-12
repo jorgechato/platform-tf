@@ -29,12 +29,13 @@ variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
 # # Grafana
 variable "grafana_image_version" {
-  default = "6.7.2"
+  default = "6.7.3"
 }
 variable "grafana_plugins" {
   type    = list
   default = [
-    "grafana-piechart-panel"
+    "grafana-piechart-panel",
+    "neocat-cal-heatmap-panel"
   ]
 }
 variable "grafana_user" {}
