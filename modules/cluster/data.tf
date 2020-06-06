@@ -13,7 +13,7 @@ data "template_file" "api-task-definition" {
   template = file("${path.module}/task-definitions/api.json")
 
   vars             = {
-    image          = "${data.aws_ecr_repository.api.repository_url}:latest"
+    image          = "${data.aws_ecr_repository.api.repository_url}:${var.api_image_version}"
     container_name = "api-jorgechato-com"
     github_topic   = var.github_topic
     github_token   = var.github_token

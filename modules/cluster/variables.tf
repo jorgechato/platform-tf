@@ -19,9 +19,12 @@ variable "mailchimp_key" {}
 variable "mailchimp_list" {}
 variable "location_user" {}
 variable "api_hosts" {}
+variable "api_image_version" {
+  default = "v1"
+}
 # # BLOG
 variable "blog_image_version" {
-  default = "3.14.0"
+  default = "latest"
 }
 variable "blog_url" {}
 variable "blog_hosts" {}
@@ -29,7 +32,7 @@ variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
 # # Grafana
 variable "grafana_image_version" {
-  default = "6.7.3"
+  default = "7.0.3"
 }
 variable "grafana_plugins" {
   type    = list
