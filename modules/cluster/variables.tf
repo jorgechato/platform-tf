@@ -20,7 +20,7 @@ variable "mailchimp_list" {}
 variable "location_user" {}
 variable "api_hosts" {}
 variable "api_image_version" {
-  default = "v1"
+  default = "latest"
 }
 # # BLOG
 variable "blog_image_version" {
