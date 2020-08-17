@@ -15,14 +15,7 @@ data "template_file" "api-task-definition" {
   vars             = {
     image          = "${data.aws_ecr_repository.api.repository_url}:${var.api_image_version}"
     container_name = "api-jorgechato-com"
-    github_topic   = var.github_topic
-    github_token   = var.github_token
-    github_user    = var.github_user
-    gist_list      = var.gist_list
-    mailchimp_list = var.mailchimp_list
-    mailchimp_key  = var.mailchimp_key
-    mailchimp_ds   = var.mailchimp_ds
-    location_user  = var.location_user
+    polarstep_user = var.polarstep_user
   }
 }
 

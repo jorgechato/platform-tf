@@ -13,36 +13,8 @@
     ],
     "environment": [
       {
-        "name": "GITHUB_TOPIC",
-        "value": "${github_topic}"
-      },
-      {
-        "name": "GITHUB_USER",
-        "value": "${github_user}"
-      },
-      {
-        "name": "GITHUB_TOKEN",
-        "value": "${github_token}"
-      },
-      {
-        "name": "GIST_LIST",
-        "value": "${gist_list}"
-      },
-      {
-        "name": "MAILCHIMP_DS",
-        "value": "${mailchimp_ds}"
-      },
-      {
-        "name": "MAILCHIMP_KEY",
-        "value": "${mailchimp_key}"
-      },
-      {
-        "name": "MAILCHIMP_LIST",
-        "value": "${mailchimp_list}"
-      },
-      {
-        "name": "LOCATION_USER",
-        "value": "${location_user}"
+        "name": "POLARSTEP_USER",
+        "value": "${polarstep_user}"
       }
     ]
   }
