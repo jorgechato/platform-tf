@@ -29,6 +29,8 @@ variable "email" {}
 # SERVICE variable
 # # API
 variable "polarstep_user" {}
+variable "goodreads_user" {}
+variable "goodreads_api_key" {}
 variable "api_hosts" {
   type = list
 }

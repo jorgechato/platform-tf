@@ -15,6 +15,14 @@
       {
         "name": "POLARSTEP_USER",
         "value": "${polarstep_user}"
+      },
+      {
+        "name": "GOODREADS_API_KEY",
+        "value": "${goodreads_api_key}"
+      },
+      {
+        "name": "GOODREADS_USER",
+        "value": "${goodreads_user}"
       }
     ]
   }

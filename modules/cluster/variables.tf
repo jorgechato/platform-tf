@@ -11,6 +11,8 @@ variable "volume_path" {}
 # SERVICE variable
 # # API
 variable "polarstep_user" {}
+variable "goodreads_user" {}
+variable "goodreads_api_key" {}
 variable "api_hosts" {}
 variable "api_image_version" {
   default = "latest"

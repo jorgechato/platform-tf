@@ -16,8 +16,10 @@ module "cluster" {
   blog_image_version = var.blog_image_version
 
   # API
-  polarstep_user = var.polarstep_user
-  api_hosts      = var.api_hosts
+  polarstep_user    = var.polarstep_user
+  goodreads_user    = var.goodreads_user
+  goodreads_api_key = var.goodreads_api_key
+  api_hosts         = var.api_hosts
 
   # Grafana
   grafana_user = var.grafana_user
