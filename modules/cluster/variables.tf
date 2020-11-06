@@ -27,7 +27,7 @@ variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
 # # Grafana
 variable "grafana_image_version" {
-  default = "7.1.0"
+  default = "7.3.1"
 }
 variable "grafana_plugins" {
   type    = list
