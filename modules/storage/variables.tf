@@ -1,22 +1,6 @@
 locals {
   services = [
     {
-      name      = "grafana"
-      hosts     = join(" ", var.grafana_hosts)
-      listen    = {
-        port     = "443",
-        protocol = "ssl"
-      },
-      locations = [
-        {
-          name = "grafana"
-          host = "localhost"
-          path = ""
-          port = "3000"
-        }
-      ]
-    },
-    {
       name      = "blog"
       hosts     = join(" ", var.blog_hosts)
       listen    = {
@@ -61,4 +45,3 @@ variable "blog_hosts" {}
 variable "blog_theme_name" {}
 variable "blog_theme_folder" {}
 variable "api_hosts" {}
-variable "grafana_hosts" {}

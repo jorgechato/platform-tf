@@ -20,8 +20,4 @@ module "cluster" {
   goodreads_user    = var.goodreads_user
   goodreads_api_key = var.goodreads_api_key
   api_hosts         = var.api_hosts
-
-  # Grafana
-  grafana_user = var.grafana_user
-  grafana_pwd  = var.grafana_pwd
 }

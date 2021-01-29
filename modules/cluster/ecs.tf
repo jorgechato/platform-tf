@@ -74,24 +74,3 @@ resource "aws_ecs_task_definition" "blog-task-definition" {
     Application = "blog"
   }
 }
-
-resource "aws_ecs_task_definition" "grafana-task-definition" {
-  family                = "grafana"
-  container_definitions = data.template_file.grafana-task-definition.rendered
-  network_mode          = "host"
-
-  volume {
-    name      = "logs"
-    host_path = "/tmp/log/grafana/"
-  }
-
-  volume {
-    name      = "data"
-    host_path = "${var.volume_path}/grafana"
-  }
-
-  tags          = {
-    Name        = "stats"
-    Application = "grafana"
-  }
-}

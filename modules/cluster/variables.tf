@@ -25,16 +25,3 @@ variable "blog_url" {}
 variable "blog_hosts" {}
 variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
-# # Grafana
-variable "grafana_image_version" {
-  default = "7.3.6"
-}
-variable "grafana_plugins" {
-  type    = list
-  default = [
-    "grafana-piechart-panel",
-    "neocat-cal-heatmap-panel"
-  ]
-}
-variable "grafana_user" {}
-variable "grafana_pwd" {}

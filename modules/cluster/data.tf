@@ -32,18 +32,6 @@ data "template_file" "blog-task-definition" {
   }
 }
 
-data "template_file" "grafana-task-definition" {
-  template = file("${path.module}/task-definitions/grafana.json")
-
-  vars              = {
-    image           = "grafana/grafana:${var.grafana_image_version}"
-    container_name  = "grafana"
-    grafana_plugins = join(",", var.grafana_plugins)
-    grafana_user    = var.grafana_user
-    grafana_pwd     = var.grafana_pwd
-  }
-}
-
 data "aws_ecr_repository" "api" {
   name = var.repo_name_api
 }

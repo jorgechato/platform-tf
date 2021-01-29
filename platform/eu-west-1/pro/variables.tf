@@ -1,5 +1,5 @@
 locals {
-  hosts    = concat(var.blog_hosts, var.api_hosts, var.grafana_hosts)
+  hosts    = concat(var.blog_hosts, var.api_hosts)
   bucket   = "config-${var.project}"
   blog_url = "https://${var.blog_hosts[0]}"
 }
@@ -42,13 +42,3 @@ variable "blog_theme_name" {}
 variable "blog_theme_url" {}
 variable "blog_theme_folder" {}
 variable "blog_image_version" {}
-# # Grafana
-variable "grafana_hosts" {
-  type = list
-}
-variable "grafana_user" {
-  default = "admin"
-}
-variable "grafana_pwd" {
-  default = "admin"
-}
