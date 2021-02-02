@@ -25,3 +25,13 @@ variable "blog_url" {}
 variable "blog_hosts" {}
 variable "blog_theme_folder" {}
 variable "blog_theme_name" {}
+# # ODOO
+variable "odoo_hosts" {}
+
+variable "odoo_host" {}
+variable "odoo_user" {}
+variable "odoo_password" {}
+
+variable "odoo_postgres_db" {}
+variable "odoo_postgres_password" {}
+variable "odoo_postgres_user" {}

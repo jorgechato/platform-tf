@@ -1,0 +1,28 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "${image}",
+    "memory": 128,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8069,
+        "hostPort": 8069
+      }
+    ],
+    "environment": [
+      {
+        "name": "HOST",
+        "value": "${odoo_host}"
+      },
+      {
+        "name": "USER",
+        "value": "${odoo_user}"
+      },
+      {
+        "name": "PASSWORD",
+        "value": "${odoo_password}"
+      }
+    ]
+  }
+]

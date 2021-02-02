@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
     host_path = "${var.volume_path}/ghost/themes/${var.blog_theme_folder}/assets"
   }
 
-  tags          = {
+  tags = {
     Name        = "nginx"
     Application = "letsencrypt"
   }
@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "api-task-definition" {
   container_definitions = data.template_file.api-task-definition.rendered
   network_mode          = "host"
 
-  tags          = {
+  tags = {
     Name        = "API"
     Application = "go"
   }
@@ -69,8 +69,35 @@ resource "aws_ecs_task_definition" "blog-task-definition" {
     host_path = "${var.volume_path}/ghost"
   }
 
-  tags          = {
+  tags = {
     Name        = "ghost"
     Application = "blog"
+  }
+}
+
+resource "aws_ecs_task_definition" "postgres-task-definition" {
+  family                = "postgres"
+  container_definitions = data.template_file.postgres-task-definition.rendered
+  network_mode          = "host"
+
+  volume {
+    name      = "content"
+    host_path = "${var.volume_path}/aova/postgres/content"
+  }
+
+  tags = {
+    Name        = "postgres"
+    Application = "erp"
+  }
+}
+
+resource "aws_ecs_task_definition" "odoo-task-definition" {
+  family                = "odoo"
+  container_definitions = data.template_file.odoo-task-definition.rendered
+  network_mode          = "host"
+
+  tags = {
+    Name        = "odoo"
+    Application = "erp"
   }
 }

@@ -1,5 +1,5 @@
 locals {
-  hosts    = concat(var.blog_hosts, var.api_hosts)
+  hosts    = concat(var.blog_hosts, var.api_hosts, var.odoo_hosts)
   bucket   = "config-${var.project}"
   blog_url = "https://${var.blog_hosts[0]}"
 }
@@ -42,3 +42,15 @@ variable "blog_theme_name" {}
 variable "blog_theme_url" {}
 variable "blog_theme_folder" {}
 variable "blog_image_version" {}
+
+# # ODOO
+variable "odoo_hosts" {
+  type = list
+}
+variable "odoo_host" {}
+variable "odoo_user" {}
+variable "odoo_password" {}
+
+variable "odoo_postgres_db" {}
+variable "odoo_postgres_password" {}
+variable "odoo_postgres_user" {}

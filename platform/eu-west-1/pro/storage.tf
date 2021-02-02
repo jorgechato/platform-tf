@@ -11,4 +11,6 @@ module "storage" {
   blog_hosts        = var.blog_hosts
   blog_theme_folder = var.blog_theme_folder
   blog_theme_name   = var.blog_theme_name
+
+  odoo_hosts    = var.odoo_hosts
 }
