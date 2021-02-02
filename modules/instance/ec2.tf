@@ -14,15 +14,15 @@ resource "aws_instance" "platform" {
 
   user_data = data.template_file.user-data.rendered
 
-  tags      = {
+  tags = {
     Name    = "${var.env}-${var.project}"
     Cluster = "${var.project}-cluster"
     Project = var.project
   }
 
   volume_tags = {
-    Name      = "${var.env}-${var.project}-main-vol"
-    Instance  = "${var.env}-${var.project}"
+    Name     = "${var.env}-${var.project}-main-vol"
+    Instance = "${var.env}-${var.project}"
   }
 }
 
@@ -32,9 +32,9 @@ resource "aws_key_pair" "dev" {
 }
 
 resource "aws_volume_attachment" "persistent" {
-  device_name  = "/dev/sdh"
-  volume_id    = var.volume_id
-  instance_id  = aws_instance.platform.id
+  device_name = "/dev/sdh"
+  volume_id   = var.volume_id
+  instance_id = aws_instance.platform.id
 
   provisioner "local-exec" {
     when    = destroy

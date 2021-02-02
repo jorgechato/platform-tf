@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "s3-terraform-state-storage" {
     prevent_destroy = true
   }
 
-  tags   =  {
+  tags = {
     Name = "Terraform S3 Remote State Store"
   }
 }

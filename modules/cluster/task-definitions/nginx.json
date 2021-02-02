@@ -15,7 +15,7 @@
         "hostPort": 443
       }
     ],
-    "environment":[
+    "environment": [
       {
         "name": "TZ",
         "value": "Europe/Madrid"

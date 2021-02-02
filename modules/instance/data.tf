@@ -1,7 +1,7 @@
 data "template_file" "user-data" {
   template = file("${path.module}/data/user-data.sh")
 
-  vars      = {
+  vars = {
     cluster = var.ecs_platform_name
     region  = var.region
     bucket  = var.bucket
@@ -18,7 +18,7 @@ data "template_file" "user-data" {
 data "template_file" "intance-policy" {
   template = file("${path.module}/iam/policy/instance.json")
 
-  vars     = {
+  vars = {
     bucket = var.bucket
   }
 }
@@ -29,15 +29,18 @@ data "http" "myip" {
 
 data "aws_ami" "ecs-optimized" {
   most_recent = true
-  owners      = ["amazon"]
+  owners      = [
+    "amazon"]
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-ecs-*-x86_64-ebs"]
+    values = [
+      "amzn2-ami-ecs-*-x86_64-ebs"]
   }
 
   filter {
     name   = "virtualization-type"
-    values = ["hvm"]
+    values = [
+      "hvm"]
   }
 }

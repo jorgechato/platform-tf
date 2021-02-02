@@ -1,7 +1,7 @@
 data "template_file" "nginx-task-definition" {
   template = "${file("${path.module}/task-definitions/nginx.json")}"
 
-  vars             = {
+  vars = {
     image          = "umputun/nginx-le"
     container_name = "nginx"
     email          = var.email
@@ -12,7 +12,7 @@ data "template_file" "nginx-task-definition" {
 data "template_file" "api-task-definition" {
   template = file("${path.module}/task-definitions/api.json")
 
-  vars                = {
+  vars = {
     image             = "${data.aws_ecr_repository.api.repository_url}:${var.api_image_version}"
     container_name    = "api-jorgechato-com"
     polarstep_user    = var.polarstep_user
@@ -24,7 +24,7 @@ data "template_file" "api-task-definition" {
 data "template_file" "blog-task-definition" {
   template = file("${path.module}/task-definitions/blog.json")
 
-  vars             = {
+  vars = {
     image          = "ghost:${var.blog_image_version}-alpine"
     container_name = "jorgechato-com"
     email          = var.email

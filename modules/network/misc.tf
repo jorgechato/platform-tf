@@ -1,21 +1,24 @@
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
-  tags   = {
+  tags = {
     Name = "ecs-${var.project}-gw"
   }
 }
 
 resource "aws_route_table" "r" {
   vpc_id     = aws_vpc.main.id
-  depends_on = [aws_internet_gateway.gw, aws_subnet.main]
+  depends_on = [
+    aws_internet_gateway.gw,
+    aws_subnet.main
+  ]
 
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.gw.id
   }
 
-  tags   = {
+  tags = {
     Name = "ecs-${var.project}-rt"
   }
 }

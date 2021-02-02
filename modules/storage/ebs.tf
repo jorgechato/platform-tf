@@ -3,7 +3,7 @@ resource "aws_ebs_volume" "main" {
   size              = 20
   type              = "standard"
 
-  tags       = {
+  tags = {
     Name     = "${var.env}-${var.project}-vol"
     Instance = "${var.env}-${var.project}"
   }

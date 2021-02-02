@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "nginx-task-definition" {
     host_path = "${var.volume_path}/ghost/themes/${var.blog_theme_folder}/assets"
   }
 
-  tags          = {
+  tags = {
     Name        = "nginx"
     Application = "letsencrypt"
   }
@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "api-task-definition" {
   container_definitions = data.template_file.api-task-definition.rendered
   network_mode          = "host"
 
-  tags          = {
+  tags = {
     Name        = "API"
     Application = "go"
   }
@@ -69,7 +69,7 @@ resource "aws_ecs_task_definition" "blog-task-definition" {
     host_path = "${var.volume_path}/ghost"
   }
 
-  tags          = {
+  tags = {
     Name        = "ghost"
     Application = "blog"
   }

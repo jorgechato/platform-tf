@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "s3-config" {
     prevent_destroy = true
   }
 
-  tags   =  {
+  tags = {
     Name = "Platform configuration files"
   }
 }
@@ -25,13 +25,15 @@ resource "aws_s3_bucket_public_access_block" "s3-terraform-state-storage" {
 }
 
 resource "aws_s3_bucket_object" "nginx-service-conf" {
-  key      = "nginx/service.conf"
-  bucket   = aws_s3_bucket.s3-config.id
-  content  = templatefile("${path.module}/data/nginx/service.conf", { services="${local.services}" })
+  key     = "nginx/service.conf"
+  bucket  = aws_s3_bucket.s3-config.id
+  content = templatefile("${path.module}/data/nginx/service.conf", {
+    services = "${local.services}"
+  })
 }
 
 resource "aws_s3_bucket_object" "nginx-conf" {
-  key      = "nginx/nginx.conf"
-  bucket   = aws_s3_bucket.s3-config.id
-  content  = file("${path.module}/data/nginx/nginx.conf")
+  key     = "nginx/nginx.conf"
+  bucket  = aws_s3_bucket.s3-config.id
+  content = file("${path.module}/data/nginx/nginx.conf")
 }

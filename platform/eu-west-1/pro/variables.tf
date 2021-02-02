@@ -14,9 +14,9 @@ variable "project" {
   default = "jorgechato-platform"
 }
 variable "az" {
-  description      = "AWS AZ names"
-  default          = {
-    eu-west-1      = "eu-west-1a"
+  description = "AWS AZ names"
+  default     = {
+    eu-west-1 = "eu-west-1a"
   }
 }
 variable "public_key" {}
